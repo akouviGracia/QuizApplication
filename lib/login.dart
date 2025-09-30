@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiztg/auth/SignUpPage.dart'; 
-
+import 'package:quiztg/SignUpPage.dart';
+    
 void main() {
   runApp(const BrainGameApp());
 }
@@ -33,26 +33,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
 
-  // Liste des emails SIMULÉS déjà inscrits.
-  // Tout autre email sera considéré comme un nouvel utilisateur.
-  final List<String> _registeredEmails = ['admin@example.com', 'test@quiztg.com'];
+  bool _isLoading = false;
+  int loginState = 0;
+  final TextEditingController _emailController = TextEditingController();
+
+
+
+  final List<String> _registeredEmails = ['admin@example.com', ];
 
   @override
   void dispose() {
     _emailController.dispose();
-    _passwordController.dispose();
+    
     super.dispose();
   }
 
-  // Fonction CLÉ : Gère le clic et la nouvelle logique de redirection
+  
   void _handleLogin() {
     final String enteredEmail = _emailController.text.trim().toLowerCase();
     
     if (enteredEmail.isEmpty) {
-      // Optionnel : Afficher un message d'erreur si l'email est vide
+      
       print("Erreur : L'email est vide.");
       // Vous pouvez utiliser un SnackBar pour l'affichage ici.
       return; 
@@ -63,15 +65,12 @@ class _LoginPageState extends State<LoginPage> {
       // L'utilisateur est déjà inscrit -> Tente la connexion normale
       print("Action : L'email ($enteredEmail) est déjà inscrit. Tentative de connexion...");
       
-      // TODO: Ici, vous ajouteriez votre VRAIE LOGIQUE de connexion (vérification du mot de passe, etc.)
-      // Si les identifiants sont corrects, naviguer vers l'écran d'accueil.
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-
+      
     } else {
-      // 2. L'utilisateur N'EST PAS INSCRIT -> Redirection vers la page d'inscription
+      
       print("Action : L'email ($enteredEmail) n'est pas inscrit. Redirection vers l'inscription...");
       
-      // Redirection immédiate vers la page d'inscription
+      
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const SignUpPage()),

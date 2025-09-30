@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiztg/Statistics.dart';
 
 // --------------------------------------------------
 
@@ -85,7 +86,10 @@ class SignUpPage extends StatelessWidget {
                   
                   //  BOUTON "S'INSCRIRE" (REDIRECTION/SOUMISSION) 
                   ElevatedButton(
-                    onPressed: () => _handleSignUpSubmit(context), 
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => StatisticsPage()),
+                    ),
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 60),
                       backgroundColor: cyan,
